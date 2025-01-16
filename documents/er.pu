@@ -1,0 +1,43 @@
+@startuml
+entity 保護者 {
+    保護者ID PK
+    氏名
+    連絡先
+    LINEアカウントID
+}
+
+entity 子供 {
+    子供ID PK
+    氏名
+    保護者ID FK
+}
+
+entity 授業 {
+    授業ID PK
+    日時
+    定員
+}
+
+entity 欠席情報 {
+    欠席ID PK
+    子供ID FK
+    授業ID FK
+    欠席理由
+    欠席日時
+    振替情報
+    振替状態
+}
+
+entity 通知 {
+    通知ID PK
+    通知内容
+    送信日時
+    受信者ID FK
+}
+
+保護者 ||--|{ 子供
+子供 ||--|{ 欠席情報
+授業 ||--|{ 欠席情報
+欠席情報 ||--|{ 通知
+
+@enduml
